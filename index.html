@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Easynvest</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+</head>
+<body class="container">
+
+    <div id="mensagemView"></div>
+    
+    <form class="form" onsubmit="contatoController.adiciona(event)">
+        
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input id="name" class="form-control" required autofocus/>        
+        </div>    
+        
+        <div class="form-group">
+            <label for="number">CPF</label>
+            <input id="cpf" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="number">Telefone</label>
+            <input id="phone" class="form-control" required/>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input id="email" class="form-control" required />
+        </div>
+        
+        <button class="btn btn-primary" type="submit">Incluir</button>
+    </form>
+
+    <div id="contatosView"></div>
+    
+    <script src="js/app/models/Contato.js"></script>
+    <script src="js/app/controllers/ContatoController.js"></script>
+    <script src="js/app/helpers/StorageHelper.js"></script>
+    <script src="js/app/models/ListaContatos.js"></script>
+    <script src="js/app/views/View.js"></script>
+    <script src="js/app/views/ContatosView.js"></script>
+    <script>
+        let contatoController = new ContatoController();
+        contatoController.loadContatos()
+    </script>
+</body>
+</html>
