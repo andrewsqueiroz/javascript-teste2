@@ -7,6 +7,7 @@ class ContatoController {
         this._inputPhone = $('#phone');
         this._inputEmail = $('#email');
 
+        this._inputIndex = null
         this._listaContatos = new ListaContatos();
         this._contatosView = new ContatosView($('#contatosView'));
         this._contatosView.update(this._listaContatos);
@@ -42,8 +43,16 @@ class ContatoController {
         this._contatosView.update(this._listaContatos);
     }
     
-    adiciona(event) {
+    adicionaEditar(event) {
         event.preventDefault();
+        if (this._inputIndex === null) {
+            this.adiciona()
+        } else {
+            this.editar() 
+        }
+    }
+
+    adiciona() {
         debugger
         this._listaContatos.adiciona(this._criaContato());
         this._contatosView.update(this._listaContatos);
@@ -54,6 +63,29 @@ class ContatoController {
         StorageHelper.save(contatos)
 
         this._limpaFormulario();
+        this.closePopup()
+    }
+
+    editar() {
+        debugger
+
+        let contatoEditado = {
+            name: this._inputName.value,
+            cpf: this._inputCpf.value,
+            phone: this._inputPhone.value,
+            email: this._inputEmail.value
+        }
+
+        this._listaContatos.editar(contatoEditado, this._inputIndex)
+
+        let contatos = this._listaContatos.contatos.map(x => {
+            return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
+        })
+        StorageHelper.save(contatos)
+        this._contatosView.update(this._listaContatos);
+
+        this._limpaFormulario();
+        this.closePopup()
     }
 
     excluir(index) {
@@ -68,6 +100,9 @@ class ContatoController {
     }
 
     openEdit(index) {
+        document.querySelector('#popUp').classList.add('open');
+        document.querySelector('#popUp').classList.add('edit');
+
         let contato = this._listaContatos.contatos.filter((x , i) => {
             if (index === i) { return x }
         })[0]
@@ -76,6 +111,17 @@ class ContatoController {
         this._inputCpf.value = contato._cpf
         this._inputPhone.value = contato._phone
         this._inputEmail.value = contato._email
+
+        this._inputIndex = index
+    }
+
+    openNew() {
+        document.querySelector('#popUp').classList.add('open');
+        this._limpaFormulario()
+    }
+
+    closePopup() {
+        document.querySelector('#popUp').classList.remove('open');
     }
     
     _criaContato() {
@@ -92,6 +138,7 @@ class ContatoController {
         this._inputCpf.value = '';
         this._inputPhone.value = '';
         this._inputEmail.value = '';
+        this._inputIndex = null
         this._inputName.focus();   
     }
 }

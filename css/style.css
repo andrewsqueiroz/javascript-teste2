@@ -1,0 +1,108 @@
+html {
+  font-family: sans-serif;
+}
+
+.table-bordered {
+  border: 1px solid #ddd;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+  color: #525252;
+  font-family: 'Arial';
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  padding: 0px;
+  margin: 0px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+tr {
+  padding: 0px;
+  margin: 0px;
+}
+thead {
+  background-color: rgb(236, 236, 236);
+}
+
+
+input {
+  color: #efeeed;
+  padding: 10px 0;
+  margin: 0 0 10px 0;
+  border: 0;
+  border-bottom: 2px #efeeed solid;
+  width: 100%;
+}
+
+button {
+  border-radius: 30px;
+  border: 0;
+  color: #ffffff;
+  background-color: #00c8b3;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.7;
+}
+button.block {
+  width: 100%;
+}
+
+.header {
+  padding: 40px 0 20px 0;
+}
+.container {
+  width: 1000px;
+  margin: auto;
+  max-width: 100%;
+}
+
+.popUp {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.popUp.open {
+  height: 100%;
+  overflow: visible;
+  opacity: 1;
+}
+
+.panel {
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 10px #00000017;
+  background: #fff;
+  z-index: 9
+}
+
+.popUp >
+.backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+  transition: all;
+}
+
+.popUp.open >
+.backdrop {
+  visibility: visible;
+}

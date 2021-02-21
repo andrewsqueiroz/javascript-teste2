@@ -4,7 +4,6 @@ class Contato {
         this._cpf = cpf;
         this._phone = phone;
         this._email = email;
-        Object.freeze(this);
     }
 
     get name() {
@@ -21,5 +20,12 @@ class Contato {
 
     get email() {
         return this._email;
+    }
+
+    set editar (data) {
+        this._name = data.name;
+        this._cpf = data.cpf;
+        this._phone = data.phone;
+        this._email = data.email;
     }
 }

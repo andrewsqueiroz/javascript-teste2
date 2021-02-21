@@ -17,6 +17,7 @@ class ListaContatos {
         this._contatos[index]._cpf = data.cpf
         this._contatos[index]._phone = data.phone
         this._contatos[index]._email = data.email
+        //Contato.editar(data)
     }
     
     get contatos() {
