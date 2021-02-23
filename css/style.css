@@ -2,16 +2,14 @@ html {
   font-family: sans-serif;
 }
 
-.table-bordered {
-  border: 1px solid #ddd;
-}
 
 body {
   margin: 0px;
   padding: 0px;
-  font-size: 14px;
+  font-size: 18px;
   color: #525252;
   font-family: 'Arial';
+  background: #f7f7eb;
 }
 
 table {
@@ -27,19 +25,52 @@ tr {
   padding: 0px;
   margin: 0px;
 }
-thead {
-  background-color: rgb(236, 236, 236);
+td {
+  padding: 12px 0;
+  border-bottom: 3px solid rgba(216,216,216,0.53);
 }
 
+thead th {
+  text-align: left;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 12px 0;
+  border-bottom: 3px solid rgba(216,216,216,0.53);
+}
+.actionColum {
+  text-align: right;
+}
 
-input {
+h1 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.form-group input {
   color: #efeeed;
-  padding: 10px 0;
-  margin: 0 0 10px 0;
+  padding: 12px 0;
+  margin: 0 0 20px 0;
   border: 0;
   border-bottom: 2px #efeeed solid;
   width: 100%;
+  background: transparent;
+  outline: none;
+  min-width: 200px;
 }
+
+.form-group label {
+  transition: all 0.2s;
+  display: block;
+  transform: translateY(-50px);
+  z-index: -1;
+  position: absolute;
+}
+
+.form-group input:focus + label,
+.form-group input[required]:valid + label {
+  transform: translateY(-64px);
+  font-size: 9px;
+} 
 
 button {
   border-radius: 30px;
@@ -56,14 +87,40 @@ button:hover {
 button.block {
   width: 100%;
 }
+.flex {
+  display: flex;
+}
+.btn-big {
+  padding: 0 40px;
+  margin: 0 20px;
+}
+.btn-icon{
+  padding: 10px 10px;
+}
+.close-btn {
+  text-align: right;
+  margin-top: -12px;
+  margin-right: -12px;
+}
 
 .header {
-  padding: 40px 0 20px 0;
+  background-image: url(../img/bg.svg);
+  background-size: 120%;
+  background-position: center 100%;
+  background-repeat: no-repeat;
+  color: #FFF;
+  padding: 64px 40px 208px;
+  background-color: #4e0250;
+  display: flex;
 }
 .container {
   width: 1000px;
   margin: auto;
   max-width: 100%;
+}
+
+#contatosView {
+  margin: 20px
 }
 
 .popUp {
@@ -92,17 +149,34 @@ button.block {
   z-index: 9
 }
 
-.popUp >
+body.open >
 .backdrop {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   position: absolute;
   visibility: hidden;
-  transition: all;
+  transition: all 0.5s;
 }
 
-.popUp.open >
+body.open >
 .backdrop {
   visibility: visible;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.icon.close {
+  background-image: url(../img/times.svg);
+  filter: invert(1);
+}
+
+.icon.edit {
+  background-image: url(../img/edit.svg);
+  filter: invert(1);
 }

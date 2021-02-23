@@ -102,6 +102,8 @@ class ContatoController {
     openEdit(index) {
         document.querySelector('#popUp').classList.add('open');
         document.querySelector('#popUp').classList.add('edit');
+        document.querySelector('#main').classList.add('open');
+        document.querySelector('#btnForm').innerHTML = 'Editar'
 
         let contato = this._listaContatos.contatos.filter((x , i) => {
             if (index === i) { return x }
@@ -117,11 +119,15 @@ class ContatoController {
 
     openNew() {
         document.querySelector('#popUp').classList.add('open');
+        document.querySelector('#main').classList.add('open');
+        document.querySelector('#btnForm').innerHTML = 'Incluir'
         this._limpaFormulario()
     }
 
     closePopup() {
         document.querySelector('#popUp').classList.remove('open');
+        document.querySelector('#popUp').classList.remove('edit');
+        document.querySelector('#main').classList.remove('open');
     }
     
     _criaContato() {

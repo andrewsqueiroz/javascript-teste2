@@ -7,13 +7,13 @@ class ContatosView extends View {
     template(model) {
         
         return `
-        <table class="table table-hover table-bordered">
+        <table class="table">
             <thead>
                 <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,9 +25,13 @@ class ContatosView extends View {
                         <td>${n.cpf}</td>
                         <td>${n.phone}</td>
                         <td>${n.email}</td>
-                        <td>
-                            <button onclick="contatoController.openEdit(${index})"> Editar </button>
-                            <button onclick="contatoController.excluir(${index})"> Excluir </button>
+                        <td class="actionColum">
+                            <button onclick="contatoController.openEdit(${index})"> 
+                                <span class="icon edit"></span>
+                            </button>
+                            <button onclick="contatoController.excluir(${index})"> 
+                                <svg class="icon close"></svg>
+                            </button>
                         </td>
                     </tr>
                 `).join('')}                
