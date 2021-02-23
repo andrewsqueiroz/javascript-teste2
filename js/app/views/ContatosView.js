@@ -7,7 +7,7 @@ class ContatosView extends View {
     template(model) {
         
         return `
-        <table class="table">
+        <table class="table listaUserFull">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -38,6 +38,25 @@ class ContatosView extends View {
             </tbody>
 
         </table>
+
+        <ul class="listaUserMobile">
+            ${model.contatos.map((n, index) => `
+                <li>
+                    <div> <strong>Nome:</strong> ${n.name} </div>
+                    <div> <strong>CPF:</strong> ${n.cpf} </div>
+                    <div> <strong>Telefone:</strong> ${n.phone} </div>
+                    <div> <strong>E-mail:</strong> ${n.email} </div>
+                    <div class="mt10">
+                        <button onclick="contatoController.openEdit(${index})"> 
+                            <span class="icon edit"></span>
+                        </button>
+                        <button onclick="contatoController.excluir(${index})"> 
+                            <svg class="icon close"></svg>
+                        </button>
+                    </div>
+                </li>
+            `).join('')} 
+        </ul>
         `;
     }
 }
