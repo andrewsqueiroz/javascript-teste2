@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Teste Easynvest</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/bootstrap-theme.css"> -->
-    
 </head>
 <body id="main">
     
@@ -21,26 +19,26 @@
             <form class="form" onsubmit="contatoController.adicionaEditar(event)">
                 
                 <div class="form-group">
-                    <input id="name" class="form-control" required autofocus/>
+                    <input id="name" maxlength="100" class="form-control" maxlength="1" required autofocus/>
                     <label for="name">Nome</label>      
                 </div>    
                 
                 <div class="form-group">
-                    <input id="cpf" class="form-control" required/>
+                    <input id="cpf" maxlength="11" class="form-control" required/>
                     <label for="number">CPF</label>
                 </div>
         
                 <div class="form-group">
-                    <input id="phone" class="form-control" required/>
+                    <input id="phone" maxlength="11" class="form-control" required/>
                     <label for="number">Telefone</label>
                 </div>
                 
                 <div class="form-group">
-                    <input id="email" class="form-control" required />
+                    <input id="email" type="email" maxlength="80" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                     <label for="email">E-mail</label>
                 </div>
                 
-                <button id="btnForm" class="block" type="submit">Incluir</button>
+                <button id="btnForm" class="block" type="submit">Cadastrar</button>
             </form>
     
         </div>
@@ -62,7 +60,6 @@
     <script src="js/app/controllers/ContatoController.js"></script>
     <script src="js/app/helpers/StorageHelper.js"></script>
     <script src="js/app/models/ListaContatos.js"></script>
-    <script src="js/app/views/View.js"></script>
     <script src="js/app/views/ContatosView.js"></script>
     <script>
         let contatoController = new ContatoController();

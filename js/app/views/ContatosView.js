@@ -1,7 +1,11 @@
-class ContatosView extends View {
+class ContatosView {
     
     constructor(elemento) {
-        super(elemento);
+        this._elemento = elemento;
+    }
+
+    update(model) {
+        this._elemento.innerHTML = this.template(model);
     }
     
     template(model) {

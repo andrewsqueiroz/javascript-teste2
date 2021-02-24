@@ -91,6 +91,11 @@ button.block {
   width: 100%;
 }
 
+button:disabled {
+  color: #dddcdc;
+  background-color: #f6f6f6;
+}
+
 .btn-big {
   padding: 0 40px;
   margin: 0 20px;
@@ -184,6 +189,12 @@ body.open >
 .icon.edit {
   background-image: url(../img/edit.svg);
   filter: invert(1);
+}
+.icon.load {
+  background-image: url(../img/load.svg);
+  width: 20px;
+  height: 20px;
+  margin: auto;
 }
 
 .listaUserMobile{

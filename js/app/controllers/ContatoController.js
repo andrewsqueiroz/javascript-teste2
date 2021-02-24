@@ -52,45 +52,59 @@ class ContatoController {
         }
     }
 
-    adiciona() {
-        debugger
-        this._listaContatos.adiciona(this._criaContato());
-        this._contatosView.update(this._listaContatos);
 
-        let contatos = this._listaContatos.contatos.map(x => {
-            return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
-        })
-        StorageHelper.save(contatos)
-
-        this._limpaFormulario();
-        this.closePopup()
+    _loadBtn (txt) {
+        if(txt == 'load') {
+            document.querySelector('#btnForm').innerHTML = '<span class="icon load"></span>'
+            document.querySelector('#btnForm').setAttribute('disabled', true)
+        } else {
+            document.querySelector('#btnForm').innerHTML = txt
+            document.querySelector('#btnForm').removeAttribute('disabled', true)
+        }
     }
 
+    adiciona() {
+        this._loadBtn('load')
+
+        setTimeout(() => { 
+            this._listaContatos.adiciona(this._criaContato());
+            this._contatosView.update(this._listaContatos);
+
+            let contatos = this._listaContatos.contatos.map(x => {
+                return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
+            })
+            StorageHelper.save(contatos)
+
+            this._limpaFormulario();
+            this.closePopup()
+        }, 1500);
+    }
+
+
     editar() {
-        debugger
+        this._loadBtn('load')
 
-        let contatoEditado = {
-            name: this._inputName.value,
-            cpf: this._inputCpf.value,
-            phone: this._inputPhone.value,
-            email: this._inputEmail.value
-        }
+        setTimeout(() => { 
+            let contatoEditado = {
+                name: this._inputName.value,
+                cpf: this._inputCpf.value,
+                phone: this._inputPhone.value,
+                email: this._inputEmail.value
+            }
 
-        this._listaContatos.editar(contatoEditado, this._inputIndex)
-
-        let contatos = this._listaContatos.contatos.map(x => {
-            return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
-        })
-        StorageHelper.save(contatos)
-        this._contatosView.update(this._listaContatos);
-
-        this._limpaFormulario();
-        this.closePopup()
+            this._listaContatos.editar(contatoEditado, this._inputIndex)
+            let contatos = this._listaContatos.contatos.map(x => {
+                return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
+            })
+            StorageHelper.save(contatos)
+            this._contatosView.update(this._listaContatos);
+    
+            this._limpaFormulario();
+            this.closePopup()
+        }, 1500);
     }
 
     excluir(index) {
-        debugger
-        console.log(index)
         this._listaContatos.excluir(index);
         let contatos = this._listaContatos.contatos.map(x => {
             return {name: x._name, cpf: x._cpf, phone: x._phone, email: x._email}
@@ -100,10 +114,8 @@ class ContatoController {
     }
 
     openEdit(index) {
-        document.querySelector('#popUp').classList.add('open');
-        document.querySelector('#popUp').classList.add('edit');
-        document.querySelector('#main').classList.add('open');
-        document.querySelector('#btnForm').innerHTML = 'Editar'
+        this.openPopup('edit')
+        this._loadBtn('Editar')
 
         let contato = this._listaContatos.contatos.filter((x , i) => {
             if (index === i) { return x }
@@ -118,9 +130,8 @@ class ContatoController {
     }
 
     openNew() {
-        document.querySelector('#popUp').classList.add('open');
-        document.querySelector('#main').classList.add('open');
-        document.querySelector('#btnForm').innerHTML = 'Incluir'
+        this.openPopup('new')
+        this._loadBtn('Cadastrar')
         this._limpaFormulario()
     }
 
@@ -128,6 +139,14 @@ class ContatoController {
         document.querySelector('#popUp').classList.remove('open');
         document.querySelector('#popUp').classList.remove('edit');
         document.querySelector('#main').classList.remove('open');
+    }
+
+    openPopup(type) {
+        document.querySelector('#popUp').classList.add('open');
+        document.querySelector('#main').classList.add('open');
+        if(type == 'edit') {
+            document.querySelector('#popUp').classList.add('edit');
+        }
     }
     
     _criaContato() {
